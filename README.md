@@ -40,7 +40,7 @@ VSC has built-in support for snippets. The snippets are stored in a single JSON 
 
 1. Install the snippets for VSC.
 
-From the above folder vscpymolsnips, download and move the file python.json to ~/Library/Application\ Support/Code/User/snippets on the Mac; on windows,$HOME/APPDATA\Roaming\Code\User\snippets\python.json; on Linux, $HOME/.config/Code/User/snippets/python.json.
+From the above folder vscpymolsnips, download and move the file python.json on the macOS to `~/Library/Application\ Support/Code/User/snippets/python.json` ; on Windows to `$HOME/APPDATA\Roaming\Code\User\snippets\python.json`; on Linux to `$HOME/.config/Code/User/snippets/python.json`.
 
 2. **Optional** If you want to use these snippets from VSC to edit live cells in Jupyter or Colab notebooks, install [GhostText browser extension](https://ghosttext.fregante.com/) in your browser and the [GhostText extension for VSC](https://marketplace.visualstudio.com/items?itemName=tokoph.ghosttext). Open the command platte (Option-X on macOS) and select Enable GhostText.
 
