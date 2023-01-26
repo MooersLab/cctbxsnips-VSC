@@ -10,7 +10,9 @@ It is available in Anaconda in the conda-forge channel as cctbx-base for python3
 
 ### Blaine's cctbx install protocol
 
-I assume that Anaconda has already been installed. We also create the Jupyter notebook kernel while we are at it. Execute one line at a time: Wait for the execution to finish before executing the next line.
+I assume that Anaconda has already been installed. We will create a conda env specifically for CCTBX. CCTBX has numerous dependencies. It is best kept in an isolated env. We also create the correpsonding Jupyter notebook kernel while we are at it. 
+
+Execute one line at a time: Wait for the execution to finish before executing the next line.
 
 ```bash
 conda create --name cctbx39 python=3.9
@@ -42,7 +44,7 @@ VSC has built-in support for snippets. The snippets are stored in a single JSON 
 
 From the above folder vscpymolsnips, download and move the file python.json on the macOS to `~/Library/Application\ Support/Code/User/snippets/python.json` ; on Windows to `$HOME/APPDATA\Roaming\Code\User\snippets\python.json`; on Linux to `$HOME/.config/Code/User/snippets/python.json`.
 
-2. **Optional** If you want to use these snippets from VSC to edit live cells in Jupyter or Colab notebooks, install [GhostText browser extension](https://ghosttext.fregante.com/) in your browser and the [GhostText extension for VSC](https://marketplace.visualstudio.com/items?itemName=tokoph.ghosttext). Open the command platte (Option-X on macOS) and select Enable GhostText.
+2. **Optional** If you want to use these snippets from VSC to edit live cells in Jupyter or Colab notebooks, install [GhostText browser extension](https://ghosttext.fregante.com/) in your browser and the [GhostText extension for VSC](https://marketplace.visualstudio.com/items?itemName=tokoph.ghosttext). Open the command platte (Option-X on macOS) in VSC and enter "Enable GhostText".
 
 ## Related repositories
 
