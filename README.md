@@ -32,7 +32,8 @@ Replace the *3.9* or *39* above with whatever version of Python you want to use 
 1. **Facilitation of code reuse**. The use of code snippets can save time by reusing existing code. The presence of tab stops in code snippets can help ensure that all parameters that need customization to a new problem are considered. Thus, tab stops can reduce subsequent debugging.
 
 2. **Use of VSC to edit Jupyter and Colab code and markdown cells** The existnig snippet formats for Jupyter and Colab notebooks do not support tab triggers and tab stops: These are standard features of code snippet systems in most text editors. We can overcome these limitations by sending the active code cell to VSC via the GhostText extension for the browser.
-3. 
+
+
 ## Installation
 
 VSC has built-in support for snippets. The snippets are stored in a single JSON file by programming language.
@@ -41,7 +42,7 @@ VSC has built-in support for snippets. The snippets are stored in a single JSON 
 
 From the above folder vscpymolsnips, download and move the file python.json to ~/Library/Application\ Support/Code/User/snippets on the Mac; on windows,$HOME/APPDATA\Roaming\Code\User\snippets\python.json; on Linux, $HOME/.config/Code/User/snippets/python.json.
 
-2. **Optional** If you want to use these snippets from VSC to edit live cells in Jupyter or Colab notebooks, install [GhostText](https://ghosttext.fregante.com/) in your browser and the [GhostText extension for VSC](https://marketplace.visualstudio.com/items?itemName=tokoph.ghosttext). Open the command platte (Option-X on macOS) and select Enable GhostText.
+2. **Optional** If you want to use these snippets from VSC to edit live cells in Jupyter or Colab notebooks, install [GhostText browser extension](https://ghosttext.fregante.com/) in your browser and the [GhostText extension for VSC](https://marketplace.visualstudio.com/items?itemName=tokoph.ghosttext). Open the command platte (Option-X on macOS) and select Enable GhostText.
 
 ## Related repositories
 
