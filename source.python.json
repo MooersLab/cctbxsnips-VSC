@@ -1,0 +1,1296 @@
+{
+"millerMtzImports": {
+    "prefix": "millerMtzImports",
+    "body": "from iotbx.reflection_file_reader import any_reflection_file\n\
+hkl_file = any_reflection_file('${1:3hz7.mtz}')\n\
+miller_arrays = hkl_file.as_miller_arrays(merge_equivalents=False)\n\
+$0",
+    "caption": "Read a mtz file into a miller array.",
+    "scope": "source.python"
+},
+"millerArrayLabels": {
+    "prefix": "millerArrayLabels",
+    "body": "[print('Miller Array %s: %s' % (i, miller_array.info().labels)) for i, miller_array in list(enumerate(miller_arrays))[:2]]\n\
+$0",
+    "caption": "Print column labels in a Miller array.",
+    "scope": "source.python"
+},
+"millerArrayWavelengths": {
+    "prefix": "millerArrayWavelengths",
+    "body": "[print('Miller Array %s: %s' % (i, miller_array.info().wavelength)) for i, miller_array in list(enumerate(miller_arrays))]\n\
+$0",
+    "caption": "Print wavelengths of each miller array.",
+    "scope": "source.python"
+},
+"millerArraySources": {
+    "prefix": "millerArraySources",
+    "body": "print('Miller Array %s: %s' % (i, miller_array.info().source)) for i, miller_array in list(enumerate(miller_arrays))]\n\
+$0",
+    "caption": "Print the source of each miller array.",
+    "scope": "source.python"
+},
+"millerArrayLengths": {
+    "prefix": "millerArrayLengths",
+    "body": "len(miller_arrays)\n\
+$0",
+    "caption": "Print length of miller arrays (i.e., the number of datasets in a mtz file).",
+    "scope": "source.python"
+},
+"millerArraySymmetry": {
+    "prefix": "millerArraySymmetry",
+    "body": "[print('Miller Array %s: %s' % (i, miller_array.info().crystal_symmetry_from_file)) for i, miller_array in list(enumerate(miller_arrays))]\n\
+$0",
+    "caption": "Print the crystal symmetry of each miller array.",
+    "scope": "source.python"
+},
+"millerArrayHKLs": {
+    "prefix": "millerArrayHKLs",
+    "body": "[print(hkl) for hkl in miller_arrays[${1:0}].indices()]\n\
+$0",
+    "caption": "Print all of the miller indices for a given Miller array.",
+    "scope": "source.python"
+},
+"millerArrayMethods": {
+    "prefix": "millerArrayMethods",
+    "body": "dir(miller_arrays[${1:0}])\n\
+$0",
+    "caption": "Print the available methods for the Miller class.",
+    "scope": "source.python"
+},
+"millerArraydstar": {
+    "prefix": "millerArraydstar",
+    "body": "miller_arrays[${1:0}].min_max_d_star_sq()\n\
+$0",
+    "caption": "Return the resolution range in d* in a specified Miller array.",
+    "scope": "source.python"
+},
+"millerArrayDminDmax": {
+    "prefix": "millerArrayDminDmax",
+    "body": "miller_arrays[${1:0}].d_max_min()\n\
+$0",
+    "caption": "Return the resolution range in Angstroms for a Miller array.",
+    "scope": "source.python"
+},
+"millerArrayIsigma
+": {
+    "prefix": "millerArrayIsigma
+",
+    "body": "miller_arrays[${1:0}].i_over_sig_i()\n\
+$0",
+    "caption": "Return the I/sig overall for a given Miller array.",
+    "scope": "source.python"
+},
+"millerArrayCC": {
+    "prefix": "millerArrayCC",
+    "body": "miller_arrays[${1:0}].cc_one_half_sigma_tau()\n\
+$0",
+    "caption": "Return CC one-half sigma tau for a given Miller array.",
+    "scope": "source.python"
+},
+"millerArrayCConeHalf": {
+    "prefix": "millerArrayCConeHalf",
+    "body": "miller_arrays[${1:0}].cc_one_half()\n\
+$0",
+    "caption": "Return CC one-half for a given Miller array. ",
+    "scope": "source.python"
+},
+"millerArrayBijvoetRatios": {
+    "prefix": "millerArrayBijvoetRatios",
+    "body": "[print(i) for i in miller_arrays[${1:0}].bijvoet_ratios()]\n\
+$0",
+    "caption": "Print the Bijvoet ratios in a specified Miller array.  May have to average by bin first.",
+    "scope": "source.python"
+},
+"millerArrayMeasurability": {
+    "prefix": "millerArrayMeasurability",
+    "body": "miller_arrays[${1:0}].measurability()\n\
+$0",
+    "caption": "Return the `measurability` of the anomalous signal in a specified Miller array.",
+    "scope": "source.python"
+},
+"millerArrayAnomalousSignal": {
+    "prefix": "millerArrayAnomalousSignal",
+    "body": "miller_arrays[${1:0}].anomalous_signal()\n\
+$0",
+    "caption": "Return the anomalous signal in a specified Miller array.",
+    "scope": "source.python"
+},
+"millerArrayComprehensiveSummary": {
+    "prefix": "millerArrayComprehensiveSummary",
+    "body": "miller_arrays[${1:0}].show_comprehensive_summary()\n\
+$0",
+    "caption": "Show comprehensive summary for a specified Miller array. ",
+    "scope": "source.python"
+},
+"millerArrayCountBijvoetPairs": {
+    "prefix": "millerArrayCountBijvoetPairs",
+    "body": "miller_arrays[${1:0}].n_bijvoet_pairs()\n\
+$0",
+    "caption": "Show number of bijvoet pairs for a specified Miller array.",
+    "scope": "source.python"
+},
+"millerArrayWilsonRatio": {
+    "prefix": "millerArrayWilsonRatio",
+    "body": "miller_arrays[${1:0}].wilson_ratio()\n\
+$0",
+    "caption": "Show wilson ratio of miller array for a specified Miller array. ",
+    "scope": "source.python"
+},
+"millerArrayUnpackIpIn": {
+    "prefix": "millerArrayUnpackIpIn",
+    "body": "Iobs = miller_arrays[${1:0}]\n\
+i_plus, i_minus = Iobs.hemispheres_acentrics()\n\
+ipd = i_plus.data()\n\
+ip=list(ipd)\n\
+imd = i_minus.data()\n\
+im = list(imd)\n\
+len(im)\n\
+Iobs.show_summary()\n\
+print(Iobs.info())\n\
+print(Iobs.observation_type())\n\
+$0",
+    "caption": "Unpack into I(+) and I(-) for a specified Miller array. ",
+    "scope": "source.python"
+},
+"millerArrayPrintSelectRows": {
+    "prefix": "millerArrayPrintSelectRows",
+    "body": "list(Iobs[${1:100:105}])\n\
+$0",
+    "caption": "Print five rows of the Iobs for a specified Miller array. ",
+    "scope": "source.python"
+},
+"millerArrayExtractIntensities": {
+    "prefix": "millerArrayExtractIntensities",
+    "body": "Iobs = miller_arrays[${1:0}]\n\
+iobsdata = Iobs.data()\n\
+list(iobsdata[${1:100:110}])\n\
+$0",
+    "caption": "Extract just the intensities for a give Miller array and print ten rows of them.",
+    "scope": "source.python"
+},
+"millerArrayPrintntensities": {
+    "prefix": "millerArrayPrintntensities",
+    "body": "[print(hkl) for hkl in miller_arrays[1].data()]\n\
+$0",
+    "caption": "Print all of the intensities for a given Miller array.",
+    "scope": "source.python"
+},
+"millerArrayconvert2mtz": {
+    "prefix": "millerArrayconvert2mtz",
+    "body": "# Convert the miller array into a mtz_dataset and write out as a mtz file.\n\
+mtz_dataset = Iobs.as_mtz_dataset(column_root_label='${1:I}')\n\
+mtz_dataset.mtz_object().write('${2:3hz7intensities}.mtz')\n\
+$0",
+    "caption": "Convert the miller array into a mtz_dataset and write out as a mtz file.",
+    "scope": "source.python"
+},
+"millerArrayReadMtz": {
+    "prefix": "millerArrayReadMtz",
+    "body": "mtz_filename2 = '${1:3hz7intensities}.mtz'\n\
+mtz_file2 = mtz.object(mtz_filename2)\n\
+mtz_file2.column_labels()\n\
+$0",
+    "caption": "Read in the mtz file and print its column labels as a sanity check.",
+    "scope": "source.python"
+},
+"millerArray2Dictionary": {
+    "prefix": "millerArray2Dictionary",
+    "body": "from iotbx import mtz\n\
+mtz_obj = mtz.object(file_name='${1:3nd4}.mtz')\n\
+# Only works with mtz.object. \n\
+# Does not work if mtz is read in with iotbx.file_reader.\n\
+miller_arrays_dict = mtz_obj.as_miller_arrays_dict()\n\
+$0",
+    "caption": "Set up the arrays as dictionaries",
+    "scope": "source.python"
+},
+"millerArrayDictionaryKeys": {
+    "prefix": "millerArrayDictionaryKeys",
+    "body": "miller_arrays_dict.keys()\n\
+$0",
+    "caption": "Print the miller keys() of a miller dictionary.",
+    "scope": "source.python"
+},
+"millerArrayDictPrintColumns": {
+    "prefix": "millerArrayDictPrintColumns",
+    "body": "from iotbx import mtz\n\
+mtz_obj = mtz.object(file_name='${1:/Users/blaine/3nd4.mtz}')\n\
+# Only works with mtz.object. Does not work if mtz is read in with iotbx.file_reader.\n\
+miller_arrays_dict = mtz_obj.as_miller_arrays_dict()\n\
+[print(f'Column label: {key[2]}')  for key in miller_arrays_dict.keys()]\n\
+$0",
+    "caption": "Print the column labels of Miller dictionary.",
+    "scope": "source.python"
+},
+"millerArrayBuildFromUnitCell": {
+    "prefix": "millerArrayBuildFromUnitCell",
+    "body": "from cctbx import miller\n\
+import cctbx\n\
+from cctbx import crystal\n\
+\n\
+ms = miller.build_set(\n\
+    crystal_symmetry=crystal.symmetry(\n\
+        space_group_symbol='${1:Fd-3m}',\n\
+        unit_cell=(${2:5.4307,5.4307,5.4307,90.00,90.0,90.00})),\n\
+    anomalous_flag=${3:True},\n\
+    d_min=${4:0.4})\n\
+\n\
+[print(hkl) for hkl in ms.indices()]\n\
+$0",
+    "caption": "Peter Zwart's code for generating the indices for unit cell of given symmetry and dimensions. ",
+    "scope": "source.python"
+},
+"millerArrayMapToASU": {
+    "prefix": "millerArrayMapToASU",
+    "body": "from cctbx import miller\n\
+import cctbx\n\
+from cctbx import crystal\n\
+\n\
+ms = miller.build_set(\n\
+    crystal_symmetry=crystal.symmetry(\n\
+        space_group_symbol='${1:Fd-3m}',\n\
+        unit_cell=(${2:5.4307,5.4307,5.4307,90.00,90.0,90.00})),\n\
+    anomalous_flag=${3:True},\n\
+    d_min=${4:0.4})\n\
+\n\
+msu = ms.map_to_asu()\n\
+[print(hkl2) for hkl2 in msu.indices()]\n\
+$0",
+    "caption": "Map generated reflections to the asu and print.",
+    "scope": "source.python"
+},
+"millerArrayPrintSummary": {
+    "prefix": "millerArrayPrintSummary",
+    "body": "from iotbx.reflection_file_reader import any_reflection_file\n\
+hkl_in = any_reflection_file(file_name='${1:3nd4}.mtz')\n\
+miller_arrays = hkl_in.as_miller_arrays()\n\
+f_obs = miller_arrays[0]\n\
+f_obs.show_summary()\n\
+$0",
+    "caption": "Read mtz file into a miller array and print summary.",
+    "scope": "source.python"
+},
+"mtzObjectSummary": {
+    "prefix": "mtzObjectSummary",
+    "body": "from iotbx import mtz\n\
+mtz_obj = mtz.object(file_name='/Users/blaine/${1:3nd4}.mtz')\n\
+mtz_obj.show_summary()\n\
+$0",
+    "caption": "Read mtz file into a mtz object and print summary.",
+    "scope": "source.python"
+},
+"millerArrayFromMtz": {
+    "prefix": "millerArrayFromMtz",
+    "body": "from iotbx import mtz\n\
+mtz_obj = mtz.object(file_name='${1:3nd4}.mtz')\n\
+miller_arrays = mtz_obj.as_miller_arrays()\n\
+$0",
+    "caption": "Read mtz file into a Miller array.",
+    "scope": "source.python"
+},
+"millerArrayTruncate": {
+    "prefix": "millerArrayTruncate",
+    "body": "from iotbx import mtz\n\
+mtz_obj = mtz.object(file_name='${1:3nd4}.mtz')\n\
+miller_arrays = mtz_obj.as_miller_arrays()\n\
+miller_array_truncated = miller_arrays[0].resolution_filter(d_min=${2:2}, d_max=${3:5})\n\
+print(miller_array_truncated)\n\
+miller_array_truncated.show_summary()\n\
+$0",
+    "caption": "Read mtz file into a Miller array, truncate, and print summary.",
+    "scope": "source.python"
+},
+"millerArrayDictColumnLabels": {
+    "prefix": "millerArrayDictColumnLabels",
+    "body": "[print(f'Column label: {key[2]}')  for key in miller_arrays_dict.keys()]\n\
+$0",
+    "caption": "Print column labels of a Miller array dictionary.",
+    "scope": "source.python"
+},
+"condaInstall": {
+    "prefix": "condaInstall",
+    "body": "conda create --name ${1:cctbx37} python=${2:3.7}\n\
+conda activate ${1:cctbx37}\n\
+conda install -c conda-forge cctbx-base jupyter pandas xarray\n\
+$0",
+    "caption": "The conda commands to install cctbx with the jupyter notebook, pandas, and xarray.",
+    "scope": "source.python"
+},
+"condaRemove": {
+    "prefix": "condaRemove",
+    "body": "conda remove --name ${1:cctbx37}",
+    "caption": "The conda commands to remove cctbx37 env.",
+    "scope": "source.python"
+},
+"fetchPDB": {
+    "prefix": "fetchPDB",
+    "body": "from iotbx.pdb.fetch import get_pdb\n\
+import sys\n\
+get_pdb(id='${1:3nd4}',data_type='pdb', mirror='rcsb', format='pdb', log=sys.stdout)\n\
+$0",
+    "caption": "Fetch pdb file from RCSB in PDB format.",
+    "scope": "source.python"
+},
+"updateCLT": {
+    "prefix": "updateCLT",
+    "body": "sudo touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress\n\
+softwareupdate -l\n\
+# Update command line tools via software update.\n\
+sudo rm /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress",
+    "caption": "Update the command line tools for Xcode on Mac OS X. ",
+    "scope": "source.python"
+},
+"extractCrystalSymmetry": {
+    "prefix": "extractCrystalSymmetry",
+    "body": "from __future__ import absolute_import, division, print_function\n\
+from iotbx import mtz\n\
+from cctbx import crystal\n\
+\n\
+def extract_from(file_name):\n\
+  mtz_object = mtz.object(file_name=file_name)\n\
+  assert mtz_object.n_symmetry_matrices() > 0\n\
+  return mtz_object.crystals()[0].crystal_symmetry()\n\
+  \n\
+ extract_from(file_name='${1:3nd4}.mtz')\n\
+ $0",
+    "caption": "Extract crystal symmetry from mtz file.",
+    "scope": "source.python"
+},
+"plotDstarsLogMeans": {
+    "prefix": "plotDstarsLogMeans",
+    "body": "'''Generate the list of dstars and logMeans as lists\n\
+for plotting by matplotlib.'''\n\
+\n\
+used = list(binner.range_used())\n\
+selections = [binner.selection(i) for i in used]\n\
+\n\
+# make means of the intensities by bin\n\
+means = [Iobs.select(sel).mean() for sel in selections]\n\
+from math import log\n\
+lnmeans = [log(y) for y in means]\n\
+\n\
+# meansBR = [Iobs.bijvoet_ratios().select(sel).mean() for sel in selections]\n\
+\n\
+# make d_centers\n\
+d_star_power = 1.618034\n\
+centers = binner.bin_centers(d_star_power)\n\
+d_centers = list(centers**(-1 / d_star_power))\n\
+\n\
+%matplotlib inline\n\
+import matplotlib.pyplot as plt\n\
+import matplotlib as mpl\n\
+mpl.rcParams['savefig.dpi'] = 600\n\
+mpl.rcParams['figure.dpi'] = 600\n\
+\n\
+fig, ax = plt.subplots(figsize=[3.25, 2.])\n\
+ax.scatter(d_centers,lnmeans,c='k',alpha=0.3,s=5.5)\n\
+\n\
+ax.set_xlim(${1:8, 1.5}) # decreasing time\n\
+ax.set_xlabel(r'$d^*$ in $\AA$',fontsize=12)\n\
+ax.set_ylabel('ln(I)',fontsize=12)\n\
+plt.xticks(fontsize=12)\n\
+plt.yticks(fontsize=12)\n\
+ax.grid(False)\n\
+plt.savefig('${2:3hz7}iobsvsdstar.pdf',bbox_inches='tight')\n\
+plt.show()\n\
+$0",
+    "caption": "Generate the list of dstars and logMeans as lists for plotting by matplotlib.",
+    "scope": "source.python"
+},
+"plotDstarsMeasurability": {
+    "prefix": "plotDstarsMeasurability",
+    "body": "from iotbx.reflection_file_reader import any_reflection_file\n\
+hkl_file = any_reflection_file('${1:3hz7}.mtz')\n\
+miller_arrays = hkl_file.as_miller_arrays(merge_equivalents=False)\n\
+\n\
+Iobs = miller_arrays[1]\n\
+# Set up the bins\n\
+n_bins = 50\n\
+binner = Iobs.setup_binner(n_bins=n_bins)\n\
+# binner.show_summary()\n\
+used = list(binner.range_used())\n\
+selections = [binner.selection(i) for i in used]\n\
+\n\
+# make d_centers for the x-axis\n\
+d_star_power = 1.618034\n\
+centers = binner.bin_centers(d_star_power)\n\
+d_centers = list(centers**(-1 / d_star_power))\n\
+\n\
+# make list of the measurabilities by resolution bin\n\
+meas = [Iobs.select(sel).measurability() for sel in selections]\n\
+\n\
+%matplotlib inline\n\
+import matplotlib.pyplot as plt\n\
+import matplotlib as mpl\n\
+mpl.rcParams['savefig.dpi'] = 600\n\
+mpl.rcParams['figure.dpi'] = 600\n\
+\n\
+fig, ax = plt.subplots(figsize=[3.25, 2.])\n\
+ax.scatter(d_centers,lnmeans,c='k',alpha=0.3,s=5.5)\n\
+\n\
+ax.set_xlim(8, 1.5) # decreasing time\n\
+ax.set_xlabel(r'$d^*$ in $\AA$',fontsize=12)\n\
+ax.set_ylabel('ln(I)',fontsize=12)\n\
+plt.xticks(fontsize=12)\n\
+plt.yticks(fontsize=12)\n\
+ax.grid(False)\n\
+plt.savefig('${1:3hz7}measureability.pdf',bbox_inches='tight')\n\
+plt.show()\n\
+$0",
+    "caption": "Generate the list of dstars and measurability as lists for plotting by matplotlib.",
+    "scope": "source.python"
+},
+"computeAllMillerIndices": {
+    "prefix": "computeAllMillerIndices",
+    "body": "from cctbx import miller\n\
+\n\
+def generate_reflection_indices(uc, dmin):\n\
+    maxh, maxk, maxl = uc.max_miller_indices(dmin)\n\
+\n\
+    indices = []\n\
+\n\
+    for h in range(-maxh, maxh + 1):\n\
+        for k in range(-maxk, maxk + 1):\n\
+            for l in range(-maxl, maxl + 1):\n\
+                if h == 0 and k == 0 and l == 0:\n\
+                    continue\n\
+                if uc.d((h, k, l)) < dmin:\n\
+                    continue\n\
+        indices.append((h, k, l))\n\
+    return indices\n\
+    \n\
+uc=(${1:5.4307,5.4307,5.4307,90.00,90.0,90.00})\n\
+dmin=${2:1.0}\n\
+$0",
+    "caption": "Compute all possible Miller indices.",
+    "scope": "source.python"
+},
+"computeAllMillerIndicesASU": {
+    "prefix": "computeAllMillerIndicesASU",
+    "body": "from cctbx import miller\n\
+import cctbx\n\
+from cctbx import crystal\n\
+\n\
+ms = miller.build_set(\n\
+    crystal_symmetry=crystal.symmetry(\n\
+        space_group_symbol='${1:Fd-3m}',\n\
+        unit_cell=('${2:5.4307,5.4307,5.4307,90.00,90.0,90.00}') ),\n\
+    anomalous_flag=${3:False},\n\
+    d_min=${4:0.4})\n\
+\n\
+for hkl in ms.indices():\n\
+    print(hkl)\n\
+\n\
+# map the reflections to the asu and print\n\
+  \n\
+msu = ms.map_to_asu()\n\
+[print(hkl2) for hkl2 in msu.indices()]\n\
+$0",
+    "caption": "Compute all possible Miller indices in the ASU.",
+    "scope": "source.python"
+},
+"computeAllMillerIndicesUnitCell": {
+    "prefix": "computeAllMillerIndicesUnitCell",
+    "body": "from cctbx import crystal\n\
+from cctbx import miller\n\
+\n\
+ms = miller.build_set(\n\
+    crystal_symmetry=crystal.symmetry(\n\
+        space_group_symbol='${1:P4}',\n\
+        unit_cell=(${2:150.8,150.8,250.4,90.0,90.0,90.0})),\n\
+    anomalous_flag=${3:False},\n\
+    d_min=${4:1.4})\n\
+msu = ms.map_to_asu()\n\
+[print(hkl) for hkl in msu.indices()]\n\
+print(msu.show_comprehensive_summary())\n\
+$0",
+    "caption": "Build miller indices given unit cell and resolution limit.",
+    "scope": "source.python"
+},
+"extractReflectionMtzFile": {
+    "prefix": "extractReflectionMtzFile",
+    "body": "from iotbx import mtz\n\
+mtz_obj = mtz.object(file_name='${1:Users/blaine/manuscripts/RETkinaseLoxo/ret_blu.mtz}')\n\
+mtz_obj.show_summary()\n\
+$0",
+    "caption": "Extract the reflections from a mtz file.",
+    "scope": "source.python"
+},
+"extractReflectionInShell": {
+    "prefix": "extractReflectionInShell",
+    "body": "from iotbx import mtz\n\
+mtz_obj = mtz.object(file_name='${1:2V89}.mtz')\n\
+miller_arrays = mtz_obj.as_miller_arrays()\n\
+for miller_array in miller_arrays:\n\
+    miller_array_truncated = miller_array.resolution_filter(d_min=${2:2}, d_max=${3:5})\n\
+print(miller_array_truncated)\n\
+$0",
+    "caption": "Extract the reflections in a shell.",
+    "scope": "source.python"
+},
+"plotRfactorResolutionBin": {
+    "prefix": "plotRfactorResolutionBin",
+    "body": "#!/usr/bin/env python\n\
+# coding: utf-8\n\
+''' \n\
+This script reads in a phenix.refine mtz file.\n\
+It plots the R-factor by resolution bin.\n\
+The plots are made with matplotlib using miller arrays.\n\
+It also plots the correlation coefficients.\n\
+The plots were made with matplotlib.\n\
+\n\
+This script was adapted from an example script in iotbx:  \n\
+\n\
+Source:  https://github.com/cctbx/cctbx_project/blob/master/\n\
+iotbx/examples/recalculate_phenix_refine_r_factors.py\n\
+'''\n\
+\n\
+\n\
+# get_ipython().run_line_magic('matplotlib', 'inline')\n\
+\n\
+from __future__ import absolute_import, division, print_function\n\
+from iotbx.reflection_file_utils import get_r_free_flags_scores\n\
+from iotbx.file_reader import any_file\n\
+import matplotlib\n\
+import matplotlib.pyplot as plt\n\
+\n\
+\n\
+\n\
+def compute_r_factors(fobs, fmodel, flags):\n\
+  fmodel, fobs = fmodel.common_sets(other=fobs)\n\
+  fmodel, flags = fmodel.common_sets(other=flags)\n\
+  fc_work = fmodel.select(~(flags.data()))\n\
+  fo_work = fobs.select(~(flags.data()))\n\
+  fc_test = fmodel.select(flags.data())\n\
+  fo_test = fobs.select(flags.data())\n\
+  r_work = fo_work.r1_factor(fc_work)\n\
+  r_free = fo_test.r1_factor(fc_test)\n\
+  \n\
+  print('r_work = %.4f' % r_work)\n\
+  print('r_free = %.4f' % r_free)\n\
+  print('')\n\
+\n\
+  binner = flags.setup_binner(n_bins=20)\n\
+  d_star_power = 1.618034\n\
+  centers = binner.bin_centers(d_star_power)\n\
+  d_centers = list(centers**(-1 / d_star_power))\n\
+#   for i in d_centers:\n\
+#     print(i)\n\
+    \n\
+  fo_work.use_binning_of(flags)\n\
+  fc_work.use_binner_of(fo_work)\n\
+  fo_test.use_binning_of(fo_work)\n\
+  fc_test.use_binning_of(fo_work)\n\
+\n\
+  r_work_list = []\n\
+  r_free_list = []\n\
+  cc_work_list = []\n\
+  cc_free_list = []\n\
+  for i_bin in fo_work.binner().range_all():\n\
+    sel_work = fo_work.binner().selection(i_bin)\n\
+    sel_test = fo_test.binner().selection(i_bin)\n\
+    fo_work_bin = fo_work.select(sel_work)\n\
+    fc_work_bin = fc_work.select(sel_work)\n\
+    fo_test_bin = fo_test.select(sel_test)\n\
+    fc_test_bin = fc_test.select(sel_test)\n\
+    if fc_test_bin.size() == 0 : continue\n\
+        \n\
+    r_work_bin = fo_work_bin.r1_factor(other=fc_work_bin,\n\
+      assume_index_matching=True)\n\
+    r_work_list.append(r_work_bin)\n\
+    \n\
+    r_free_bin = fo_test_bin.r1_factor(other=fc_test_bin,\n\
+      assume_index_matching=True)\n\
+    r_free_list.append(r_free_bin)\n\
+    \n\
+    cc_work_bin = fo_work_bin.correlation(fc_work_bin).coefficient()\n\
+    cc_work_list.append(cc_work_bin)\n\
+    \n\
+    cc_free_bin = fo_test_bin.correlation(fc_test_bin).coefficient()\n\
+    cc_free_list.append(cc_free_bin)\n\
+    \n\
+    legend = flags.binner().bin_legend(i_bin, show_counts=False)\n\
+    print('%s  %8d %8d  %.4f %.4f  %.3f %.3f' % (legend, fo_work_bin.size(),\n\
+      fo_test_bin.size(), r_work_bin, r_free_bin, cc_work_bin, cc_free_bin))\n\
+    \n\
+  return d_centers, r_work_list, r_free_list, cc_work_list, cc_free_list\n\
+\n\
+\n\
+def plot_r_factors(d_centers, r_work_list, r_free_list):\n\
+  plt.scatter(d_centers, r_work_list, label=r'$\mathit{R_{work}}$')\n\
+  plt.scatter(d_centers, r_free_list, label=r'$\mathit{R_{free}}$')\n\
+  plt.xlabel(r'Resolution ($\mathrm{\AA}$)')\n\
+  plt.ylabel(r'R-factor (%)')\n\
+  plt.legend(loc='upper right')\n\
+  plt.savefig('Rs.pdf')\n\
+  plt.close()\n\
+\n\
+\n\
+def plot_cc(d_centers, cc_work_list, cc_free_list):\n\
+  plt.scatter(d_centers, cc_work_list, label=r'$\mathit{CC_{work}}$')\n\
+  plt.scatter(d_centers, cc_free_list, label=r'$\mathit{CC_{free}}$')\n\
+  plt.xlabel(r'Resolution ($\mathrm{\AA}$)')\n\
+  plt.ylabel(r'Correlation Coefficeint Fo vs Fc (%)')\n\
+  plt.legend(loc='lower right')\n\
+  plt.savefig('CCs.pdf')\n\
+\n\
+\n\
+def run(input_mtz):\n\
+  mtz_in = any_file(input_mtz)\n\
+  ma = mtz_in.file_server.miller_arrays\n\
+  flags = fmodel = fobs = None\n\
+  # select the output arrays from phenix.refine.  This could easily be modified\n\
+  # to handle MTZ files from other programs.\n\
+  for array in ma :\n\
+    labels = array.info().label_string()\n\
+    if labels.startswith('R-free-flags'):\n\
+      flags = array\n\
+    elif labels.startswith('F-model'):\n\
+      fmodel = abs(array)\n\
+    elif labels.startswith('F-obs-filtered'):\n\
+      fobs = array\n\
+  if (None in [flags, fobs, fmodel]):\n\
+    raise RuntimeError('Not a valid phenix.refine output file')\n\
+  scores = get_r_free_flags_scores([flags], None)\n\
+  test_flag_value = scores.test_flag_values[0]\n\
+  flags = flags.customized_copy(data=flags.data()==test_flag_value)\n\
+\n\
+  (d_centers, \n\
+   r_work_list, \n\
+   r_free_list, \n\
+   cc_work_list, \n\
+   cc_free_list) = compute_r_factors(fobs, fmodel, flags)\n\
+  plot_r_factors(d_centers, r_work_list, r_free_list)\n\
+  plot_cc(d_centers, cc_work_list, cc_free_list)\n\
+\n\
+\n\
+if (__name__ == '__main__'):\n\
+  run(input_mtz='${1:28molrepEdited_5_refine_001}.mtz')\n\
+$0",
+    "caption": "Read in a phenix.refine mtz file. It plots the work and free R-factors by resolution bin.",
+    "scope": "source.python"
+},
+"plotFcalcsrResolutionBin": {
+    "prefix": "plotFcalcsrResolutionBin",
+    "body": "'''\n\
+This script reads in a phenix.refine mtz file.\n\
+It plots the R-factor by resolution bin.\n\
+The plots are made with matplotlib using miller arrays.\n\
+It also plots the correlation coefficients.\n\
+The plots were made with matplotlib.\n\
+\n\
+This script was adapted from an example script in iotbx:  \n\
+\n\
+Source:  https://github.com/cctbx/cctbx_project/blob/master/\n\
+iotbx/examples/recalculate_phenix_refine_r_factors.py\n\
+'''\n\
+\n\
+\n\
+# get_ipython().run_line_magic('matplotlib', 'inline')\n\
+\n\
+from __future__ import absolute_import, division, print_function\n\
+from iotbx.reflection_file_utils import get_r_free_flags_scores\n\
+from iotbx.file_reader import any_file\n\
+import matplotlib\n\
+import matplotlib.pyplot as plt\n\
+\n\
+\n\
+\n\
+def compute_r_factors(fobs, fmodel, flags):\n\
+  fmodel, fobs = fmodel.common_sets(other=fobs)\n\
+  fmodel, flags = fmodel.common_sets(other=flags)\n\
+  fc_work = fmodel.select(~(flags.data()))\n\
+  fo_work = fobs.select(~(flags.data()))\n\
+  fc_test = fmodel.select(flags.data())\n\
+  fo_test = fobs.select(flags.data())\n\
+  r_work = fo_work.r1_factor(fc_work)\n\
+  r_free = fo_test.r1_factor(fc_test)\n\
+  \n\
+  print('r_work = %.4f' % r_work)\n\
+  print('r_free = %.4f' % r_free)\n\
+  print('')\n\
+\n\
+  binner = flags.setup_binner(n_bins=20)\n\
+  d_star_power = 1.618034\n\
+  centers = binner.bin_centers(d_star_power)\n\
+  d_centers = list(centers**(-1 / d_star_power))\n\
+#   for i in d_centers:\n\
+#     print(i)\n\
+    \n\
+  fo_work.use_binning_of(flags)\n\
+  fc_work.use_binner_of(fo_work)\n\
+  fo_test.use_binning_of(fo_work)\n\
+  fc_test.use_binning_of(fo_work)\n\
+\n\
+  r_work_list = []\n\
+  r_free_list = []\n\
+  cc_work_list = []\n\
+  cc_free_list = []\n\
+  for i_bin in fo_work.binner().range_all():\n\
+    sel_work = fo_work.binner().selection(i_bin)\n\
+    sel_test = fo_test.binner().selection(i_bin)\n\
+    fo_work_bin = fo_work.select(sel_work)\n\
+    fc_work_bin = fc_work.select(sel_work)\n\
+    fo_test_bin = fo_test.select(sel_test)\n\
+    fc_test_bin = fc_test.select(sel_test)\n\
+    if fc_test_bin.size() == 0 : continue\n\
+        \n\
+    r_work_bin = fo_work_bin.r1_factor(other=fc_work_bin,\n\
+      assume_index_matching=True)\n\
+    r_work_list.append(r_work_bin)\n\
+    \n\
+    r_free_bin = fo_test_bin.r1_factor(other=fc_test_bin,\n\
+      assume_index_matching=True)\n\
+    r_free_list.append(r_free_bin)\n\
+    \n\
+    cc_work_bin = fo_work_bin.correlation(fc_work_bin).coefficient()\n\
+    cc_work_list.append(cc_work_bin)\n\
+    \n\
+    cc_free_bin = fo_test_bin.correlation(fc_test_bin).coefficient()\n\
+    cc_free_list.append(cc_free_bin)\n\
+    \n\
+    legend = flags.binner().bin_legend(i_bin, show_counts=False)\n\
+    print('%s  %8d %8d  %.4f %.4f  %.3f %.3f' % (legend, fo_work_bin.size(),\n\
+      fo_test_bin.size(), r_work_bin, r_free_bin, cc_work_bin, cc_free_bin))\n\
+    \n\
+  return d_centers, r_work_list, r_free_list, cc_work_list, cc_free_list\n\
+\n\
+\n\
+def plot_r_factors(d_centers, r_work_list, r_free_list):\n\
+  plt.scatter(d_centers, r_work_list, label=r'$\mathit{R_{work}}$')\n\
+  plt.scatter(d_centers, r_free_list, label=r'$\mathit{R_{free}}$')\n\
+  plt.xlabel(r'Resolution ($\mathrm{\AA}$)')\n\
+  plt.ylabel(r'R-factor (%)')\n\
+  plt.legend(loc='upper right')\n\
+  plt.savefig('Rs.pdf')\n\
+  plt.close()\n\
+\n\
+\n\
+def plot_cc(d_centers, cc_work_list, cc_free_list):\n\
+  plt.scatter(d_centers, cc_work_list, label=r'$\mathit{CC_{work}}$')\n\
+  plt.scatter(d_centers, cc_free_list, label=r'$\mathit{CC_{free}}$')\n\
+  plt.xlabel(r'Resolution ($\mathrm{\AA}$)')\n\
+  plt.ylabel(r'Correlation Coefficeint Fo vs Fc (%)')\n\
+  plt.legend(loc='lower right')\n\
+  plt.savefig('CCs.pdf')\n\
+\n\
+\n\
+def run(input_mtz):\n\
+  mtz_in = any_file(input_mtz)\n\
+  ma = mtz_in.file_server.miller_arrays\n\
+  flags = fmodel = fobs = None\n\
+  # select the output arrays from phenix.refine.  This could easily be modified\n\
+  # to handle MTZ files from other programs.\n\
+  for array in ma :\n\
+    labels = array.info().label_string()\n\
+    if labels.startswith('R-free-flags'):\n\
+      flags = array\n\
+    elif labels.startswith('F-model'):\n\
+      fmodel = abs(array)\n\
+    elif labels.startswith('F-obs-filtered'):\n\
+      fobs = array\n\
+  if (None in [flags, fobs, fmodel]):\n\
+    raise RuntimeError('Not a valid phenix.refine output file')\n\
+  scores = get_r_free_flags_scores([flags], None)\n\
+  test_flag_value = scores.test_flag_values[0]\n\
+  flags = flags.customized_copy(data=flags.data()==test_flag_value)\n\
+\n\
+  (d_centers, \n\
+   r_work_list, \n\
+   r_free_list, \n\
+   cc_work_list, \n\
+   cc_free_list) = compute_r_factors(fobs, fmodel, flags)\n\
+  plot_r_factors(d_centers, r_work_list, r_free_list)\n\
+  plot_cc(d_centers, cc_work_list, cc_free_list)\n\
+\n\
+\n\
+if (__name__ == '__main__'):\n\
+  run(input_mtz='${1:28molrepEdited_5_refine_001}.mtz')",
+    "caption": "Example of computing Fcalcs and then plotting them by resolution bin. This script uses miller arrays and binner.",
+    "scope": "source.python"
+},
+"plotIntensityResolutionBin": {
+    "prefix": "plotIntensityResolutionBin",
+    "body": "from iotbx.file_reader import any_file\n\
+import matplotlib.pyplot as plt\n\
+\n\
+f = any_file('${1:/Users/blaine/manuscripts/RETkinaseLoxo/ret_blu.mtz}')\n\
+\n\
+print(f.file_type)\n\
+f.show_summary()\n\
+miller_arrays = f.file_server.miller_arrays\n\
+iobs =  miller_arrays[3]\n\
+flags = miller_arrays[0]\n\
+iobs, flags = iobs.common_sets(other=flags)\n\
+iobsData = iobs.data()\n\
+list(iobsData[100:110])\n\
+iobs.show_comprehensive_summary()\n\
+# iobs.binner()\n\
+n_bins = ${2:20}\n\
+binner = iobs.setup_binner(n_bins=n_bins)\n\
+binner.show_summary()\n\
+\n\
+used = list(binner.range_used())\n\
+selections = [binner.selection(i) for i in used]\n\
+means = [iobs.select(sel).mean() for sel in selections]\n\
+\n\
+from math import log\n\
+lnmeans = [log(y) for y in means]\n\
+\n\
+d_star_power = 1.618034\n\
+centers = binner.bin_centers(d_star_power)\n\
+d_centers = list(centers**(-1 / d_star_power))\n\
+d_centers\n\
+\n\
+# plt.ylabel('Natural log of the amplitudes squared')\n\
+# plt.xlabel(r'$\textrm{d^*}$ in $\textrm{\AA}$')\n\
+# ax.set_xlim(35, 1.5)\n\
+# plt.scatter(d_centers,lnmeanss)\n\
+\n\
+fig, ax = plt.subplots()\n\
+ax.scatter(d_centers,lnmeans)\n\
+ax.set_xlim(${3:8}, ${4:1.5})  # decreasing\n\
+ax.set_xlabel(r'$d^*$ in $\AA$')\n\
+ax.set_ylabel('Natural log of the intensities')\n\
+ax.grid(False)\n\
+plt.savefig('${5:iobsvsdstar}.pdf')\n\
+$0",
+    "caption": "Miller arrays to plot of bin mean intensity over dstar",
+    "scope": "source.python"
+},
+"cns2mtz": {
+    "prefix": "cns2mtz",
+    "body": "from iotbx import reflection_file_reader\n\
+import os\n\
+reflection_file = reflection_file_reader.any_reflection_file(file_name=os.path.expandvars('${1:\$CNS_SOLVE/doc/html/tutorial/data/pen/scale.hkl}'))\n\
+from cctbx import crystal\n\
+crystal_symmetry = crystal.symmetry( unit_cell=(${2:97.37, 46.64, 65.47, 90, 115.4, 90}), space_group_symbol='${3:C2}')\n\
+miller_arrays = reflection_file.as_miller_arrays( crystal_symmetry=crystal_symmetry)\n\
+mtz_dataset = None\n\
+for miller_array in miller_arrays:\n\
+    if (mtz_dataset is None):\n\
+        mtz_dataset = miller_array.as_mtz_dataset(\n\
+            column_root_label=miller_array.info().labels[0]) \n\
+    else:\n\
+        mtz_dataset.add_miller_array(\n\
+            miller_array=miller_array, \n\
+            column_root_label=miller_array.info().labels[0])\n\
+mtz_object = mtz_dataset.mtz_object() \n\
+mtz_object.show_summary()\n\
+$0",
+    "caption": "Miller arrays to convert CNS reflection file into an mtz file",
+    "scope": "source.python"
+},
+"FsigmaFbyabsLindex": {
+    "prefix": "FsigmaFbyabsLindex",
+    "body": "import pandas as pd\n\
+'''\n\
+Use pandas to read in a hkl file with whitespace separators into a dataframe.\n\
+Append to the dataframe a column with F/sigmaF values.\n\
+Append to the dataframe a column with the absolute value of the L indices.\n\
+Average F/sigmaF by absL index.\n\
+Write to absL and F/sigmaF to csv file.\n\
+'''\n\
+mtzdata = pd.read_csv('${1:1524start}.hkl', names=['H','K','L',${2:'F','SIGF'}], sep='\s+')\n\
+mtzdata['FovSigF'] = mtzdata.apply(lambda row: row['F'] / row['SIGF'], axis=1)\n\
+mtzdata['absL'] = mtzdata.apply(lambda row: abs(row['L']), axis=1)\n\
+FovSigFabsL = mtzdata.groupby([mtzdata.absL]).FovSigF.mean()\n\
+FovSigFabsL.to_csv('${3:test2}.csv')\n\
+$0",
+    "caption": "L-plot",
+    "scope": "source.python"
+},
+"changeMtzColumns": {
+    "prefix": "changeMtzColumns",
+    "body": "from iotbx.reflection_file_reader import any_reflection_file\n\
+hkl_in = any_reflection_file('${1:/Users/blaine/manuscripts/RETkinaseLoxo/ret_blu.mtz}')\n\
+\n\
+miller_arrays = hkl_in.as_miller_arrays()\n\
+\n\
+i_obs =  miller_arrays[3]\n\
+r_free_flags = miller_arrays[0]\n\
+f_obs = i_obs.f_sq_as_f()\n\
+\n\
+mtz_dataset = i_obs.as_mtz_dataset(column_root_label='I')\n\
+mtz_dataset.add_miller_array(f_obs, column_root_label='F')\n\
+mtz_dataset.add_miller_array(r_free_flags,column_root_label='${2:FreeR_flag}')\n\
+mtz_dataset.mtz_object().write('${3:loxodata.mtz}')\n\
+$0",
+    "caption": "Read in mtz file and write out with fewer columns.",
+    "scope": "source.python"
+},
+"normalizedStructureFactors": {
+    "prefix": "normalizedStructureFactors",
+    "body": "all_e_values = miller_array.quasi_normalize_structure_factors().sort(by_value='data')\n\
+$0",
+    "caption": "Calculate quasi-normalized structure factor.",
+    "scope": "source.python"
+},
+"readMtzFile": {
+    "prefix": "readMtzFile",
+    "body": "from iotbx.file_reader import any_file\n\
+mtz_in = any_file('${1:data}.mtz', force_type='mtz')\n\
+miller_arrays = mtz_in.file_server.miller_arrays\n\
+$0",
+    "caption": "Read in a mtz file into a Miller array with iotbx.file_reader.",
+    "scope": "source.python"
+},
+"pattersonContourMap": {
+    "prefix": "pattersonContourMap",
+    "body": "import numpy\n\
+from matplotlib import pyplot\n\
+import gemmi\n\
+# https://gemmi.readthedocs.io/en/latest/grid.html\n\
+ccp4 = gemmi.read_ccp4_map('${1:/Users/blaine/4bqrPatterson.ccp4}')\n\
+ccp4.setup()\n\
+arr = numpy.array(ccp4.grid, copy=False)\n\
+x = numpy.linspace(0, ccp4.grid.unit_cell.a, num=arr.shape[0], endpoint=False)\n\
+y = numpy.linspace(0, ccp4.grid.unit_cell.b, num=arr.shape[1], endpoint=False)\n\
+X, Y = numpy.meshgrid(x, y, indexing='ij')\n\
+pyplot.rcParams['figure.figsize'] = (8.0, 8.0)\n\
+pyplot.contour(X, Y, arr[:,:,0],500, zorder=1,linestyles='solid')\n\
+pyplot.gca().set_aspect('equal', adjustable='box')\n\
+pyplot.show()\n\
+\n\
+arr2 = numpy.array(ccp4.grid, copy=False)\n\
+x = numpy.linspace(0, ccp4.grid.unit_cell.a, num=arr2.shape[0], endpoint=False)\n\
+z = numpy.linspace(0, ccp4.grid.unit_cell.c, num=arr2.shape[1], endpoint=False)\n\
+X, Z = numpy.meshgrid(x, z, indexing='ij')\n\
+pyplot.rcParams['figure.figsize'] = (4.0, 20.5)\n\
+pyplot.contour(X, Z, arr[:,:,0],500, zorder=1, linestyles='solid')\n\
+pyplot.gca().set_aspect('equal', adjustable='box')\n\
+pyplot.savefig('patterson.png', dpi=600)\n\
+pyplot.show()\n\
+$0",
+    "caption": "Read in a mtz file with iotbx.file_reader.",
+    "scope": "source.python"
+},
+"condaInstall2": {
+    "prefix": "condaInstall2",
+    "body": "conda remove --name cctbx${1:37}\n\
+conda create -n ${2:cctbx38} -c conda-forge cctbx-base python=${4:3.8}\n\
+conda activate ${2:cctbx38}\n\
+conda install -c conda-forge cctbx-base\n\
+conda install -c anaconda ipykernel\n\
+python -m ipykernel install --user --name ${2:cctbx38} --display-name '${2:cctbx38}'\n\
+$0",
+    "caption": "The conda commands to remove old env and create a new one for  cctbx. These commands need to be run on the command line.",
+    "scope": "source.python"
+},
+"eigenvalues": {
+    "prefix": "eigenvalues",
+    "body": "from scitbx.array_family import flex;\n\
+from scitbx.linalg import eigensystem;\n\
+m = flex.double(($1:-2, -4, 2, -2, 1, 2, 4, 2, 5}));\n\
+m.reshape(flex.grid(3,3));\n\
+es = eigensystem.real_symmetric(m);\n\
+list(es.values());\n\
+list(es.vectors());\n\
+$0",
+    "caption": "The commands to find the eigenvalues and eigenvectors on a tensor. The code is from a post to cctbxbb on 10 December 2020 by Richard Gildea in a reply to Robert Oeffner about code in cctbx for finding eigenvalues and eigenvectors. Robert was requesting the analog in cctbx to scipy.linalg.eig.",
+    "scope": "source.python"
+},
+"IpIm": {
+    "prefix": "IpIm",
+    "body": "%matplotlib inline\n\
+import matplotlib.pyplot as plt\n\
+import matplotlib as mpl\n\
+import matplotlib.ticker as ticker\n\
+from matplotlib.ticker import MultipleLocator #, FormatStrFormatter\n\
+from matplotlib.ticker import FuncFormatter\n\
+from iotbx.reflection_file_reader import any_reflection_file\n\
+\n\
+# >>> change the mtz file name\n\
+hkl_file = any_reflection_file('${1:3hz7}.mtz')\n\
+miller_arrays = hkl_file.as_miller_arrays(merge_equivalents=False)\n\
+Iobs = miller_arrays[1]\n\
+i_plus, i_minus = Iobs.hemispheres_acentrics()\n\
+ipd = i_plus.data()\n\
+ip=list(ipd)\n\
+imd = i_minus.data()\n\
+im = list(imd)\n\
+len(im)\n\
+\n\
+comma_fmt = FuncFormatter(lambda x, p: format(int(x), ','))\n\
+\n\
+mpl.rcParams['savefig.dpi'] = 600\n\
+mpl.rcParams['figure.dpi'] = 600\n\
+\n\
+# Set to width of a one column on a two-column page.\n\
+# May want to adjust settings for a slide.\n\
+fig, ax = plt.subplots(figsize=[3.25, 3.25])\n\
+ax.scatter(ip,im,c='k',alpha=0.3,s=5.5)\n\
+ax.set_xlabel(r'I(+)',fontsize=12)\n\
+ax.set_ylabel(r'I(-)',fontsize=12)\n\
+ax.xaxis.set_major_locator(MultipleLocator(50000.))\n\
+ax.yaxis.set_major_locator(MultipleLocator(50000.))\n\
+ax.get_xaxis().set_major_formatter(comma_fmt)\n\
+ax.get_yaxis().set_major_formatter(comma_fmt)\n\
+\n\
+plt.xticks(fontsize=12)\n\
+plt.yticks(fontsize=12)\n\
+ax.grid(False)\n\
+\n\
+# >>> change name of the figure file\n\
+plt.savefig('${1:3hz7}IpIm.pdf',bbox_inches='tight')\n\
+$0",
+    "caption": "Scatter plot of I(+) and (I(-). The presence of an anomalous signal is indicated by deviations from x=y.",
+    "scope": "source.python"
+},
+"fetchFASTA": {
+    "prefix": "fetchFASTA",
+    "body": "from iotbx.pdb.fetch import get_pdb\n\
+import sys\n\
+get_pdb(id='3nd4',data_type='pdb', mirror='rcsb', format='pdb', log=sys.stdout)\n\
+$0",
+    "caption": "Fetch fasta file from RCSB.",
+    "scope": "source.python"
+},
+"fetchXrayCif": {
+    "prefix": "fetchXrayCif",
+    "body": "from iotbx.pdb.fetch import get_pdb\n\
+import sys\n\
+get_pdb(id='${1:3nd4}',data_type='xray', mirror='rcsb', format='cif', log=sys.stdout)\n\
+$0",
+    "caption": "Fetch X-ray data from RCSB in mmCIF format.",
+    "scope": "source.python"
+},
+"fetchAtomicCif": {
+    "prefix": "fetchAtomicCif",
+    "body": "from iotbx.pdb.fetch import get_pdb\n\
+import sys\n\
+get_pdb(id='${1:3nd4}',data_type='xray', mirror='rcsb', format='cif', log=sys.stdout)\n\
+$0",
+    "caption": "Fetch  atomic coordinates from RCSB in mmCIF format.",
+    "scope": "source.python"
+},
+"symmetryFromPDB": {
+    "prefix": "symmetryFromPDB",
+    "body": "import iotbx\n\
+iotbx.pdb.crystal_symmetry_from_pdb.extract_from('${1:3nd4}.pdb')\n\
+$0",
+    "caption": "Print the symmetry from a PDB file.",
+    "scope": "source.python"
+},
+"makeMaps": {
+    "prefix": "makeMaps",
+    "body": "from mmtbx.maps.utils import create_map_from_pdb_and_mtz\n\
+'''The phenix.maps commandline tool is the recommended approach.'''\n\
+id='${1:3nd4}'\n\
+create_map_from_pdb_and_mtz(\n\
+          pdb_file='%s.pdb' % id,\n\
+          mtz_file='%s.mtz' % id,\n\
+          output_file='%s_maps.mtz' % id,\n\
+          fill=False,\n\
+          out=None,\n\
+          llg_map=False,\n\
+          remove_unknown_scatterering_type=True,\n\
+          assume_pdb_data=False)\n\
+$0",
+    "caption": "Read in mtz and pdb file and write map coefficients to a separate mtz file.",
+    "scope": "source.python"
+},
+"testCCTBX": {
+    "prefix": "testCCTBX",
+    "body": "libtbx.run_tests_parallel module=libtbx module=cctbx nproc=${1:6}\n\
+$0",
+    "caption": "Enter this snippet on the command line in an empty directory.",
+    "scope": "source.python"
+},
+"condaInstall4Ununtu": {
+    "prefix": "condaInstall4Ununtu",
+    "body": "apt install nodejs git\n\
+wget https://repo.anaconda.com/archive/${1:Anaconda3-2020.02-Linux-x86_64.sh}\n\
+bash ${1:Anaconda3-2020.02-Linux-x86_64.sh}\n\
+conda create -n ${2:pc37} python=3.7 schrodinger::pymol-bundle=2.4.1 conda-forge::cctbx-base conda-forge::jupyter\n\
+conda activate ${2:pc37}\n\
+conda install conda-forge::jupyterlab=2.2.0\n\
+# The following may be needed\n\
+# jupyter serverextension enable --py jupyterlab --user \n\
+pip install jupyterlab-snippets-multimenus\n\
+jupyter lab build\n\
+# Might be needed\n\
+# jupyter lab clean\n\
+jupyter --path # select the top option under Data for storing the libraries\n\
+cd ~/.local/share/jupyter # change as per output from prior line\n\
+mkdir multimenus_snippets\n\
+cd multimenus_snippets\n\
+git clone https://github.com/MooersLab/juptyerlabpymolcctbx.git cctbx\n\
+git clone https://github.com/MooersLab/juptyerlabpymolcctbxplus.git cctbx+\n\
+git clone https://github.com/MooersLab/juptyerlabpymolpysnips.git pymol\n\
+git clone https://github.com/MooersLab/juptyerlabpymolpysnipsplus.git pymol+\n\
+jupyter lab # or libtbx.python -m jupyter-lab\n\
+$0",
+    "caption": "Enter this snippet on the command line in an empty directory.",
+    "scope": "source.python"
+},
+"condaListEnvs": {
+    "prefix": "condaListEnvs",
+    "body": "!conda env list",
+    "caption": "List the currently available envs. The bang (!) enables running this command in a Juptyer Notebook. Delete the bang to run the command in the terminal.",
+    "scope": "source.python"
+},
+"condaRemoveEnv": {
+    "prefix": "condaRemoveEnv",
+    "body": "!conda env remove --name cctbx37",
+    "caption": "Remove a specified env. The bang (!) enables running this command in a Juptyer Notebook. Delete the bang to run the command in the terminal.",
+    "scope": "source.python"
+},
+"condaInstallCCTBXInsidePyMOL": {
+    "prefix": "condaInstallCCTBXInsidePyMOL",
+    "body": "# At the PyMOL prompt in the PyMOL GUI paste the following:\n\
+conda install conda-forge::cctbx-base conda-forge::jupyter \n\
+conda install conda-forge::jupyterlab=2.2.0\n\
+conda install conda-forge::cctbx-base\n\
+# In a terminal\n\
+/Applications/PyMOL.app/Contents/bin/jupyter serverextension enable --py jupyterlab --user\n\
+/Applications/PyMOL.app/Contents/bin/ipython kernel install --name pymol --user\n\
+/Applications/PyMOL.app/Contents/bin/pip install jupyterlab-snippets-multimenus\n\
+/Applications/PyMOL.app/Contents/bin/jupyter lab build\n\
+/Applications/PyMOL.app/Contents/bin/jupyter lab clean\n\
+/Applications/PyMOL.app/Contents/bin/jupyter --path # select the top option under Data for storing the libraries\n\
+cd ~.local/share/jupyter # change as per output from prior line\n\
+mkdir multimenus_snippets\n\
+cd multimenus_snippets\n\
+git clone https://github.com/MooersLab/juptyerlabpymolcctbx.git cctbx\n\
+git clone https://github.com/MooersLab/juptyerlabpymolcctbxplus.git cctbx+\n\
+git clone https://github.com/MooersLab/juptyerlabpymolpysnips.git pymol\n\
+git clone https://github.com/MooersLab/juptyerlabpymolpysnipsplus.git pymol+\n\
+/Applications/PyMOL.app/Contents/bin/ipython kernel install --name pymol37 --user\n\
+$0",
+    "caption": "Install cctbx inside PyMOL. This protocol worked on a Mac OS.",
+    "scope": "source.python"
+},
+"testCCTBXpython38": {
+    "prefix": "testCCTBXpython38",
+    "body": "#! /bin/sh\n\
+set noglob\n\
+set verbose\n\
+libtbx.python $CONDA_PREFIX/lib/python3.8/site-packages/libtbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.8/site-packages/iotbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.8/site-packages/boost_adptbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.8/site-packages/fable/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.8/site-packages/scitbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.8/site-packages/cctbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.8/site-packages/cctbx/run_examples.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.8/site-packages/smtbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.8/site-packages/cflib_adaptbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.8/site-packages/reduce/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.8/site-packages/mmtbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.8/site-packages/cctbx_website/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.8/site-packages/gltbx/run_tests.py",
+    "caption": "Bash script to test new installation of cctbx with Python3.7 in a conda env.",
+    "scope": "source.python"
+},
+"testCCTBXpython37": {
+    "prefix": "testCCTBXpython37",
+    "body": "#! /bin/sh\n\
+set noglob\n\
+set verbose\n\
+libtbx.python $CONDA_PREFIX/lib/python3.7/site-packages/libtbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.7/site-packages/iotbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.7/site-packages/boost_adptbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.7/site-packages/fable/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.7/site-packages/scitbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.7/site-packages/cctbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.7/site-packages/cctbx/run_examples.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.7/site-packages/smtbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.7/site-packages/cflib_adaptbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.7/site-packages/reduce/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.7/site-packages/mmtbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.7/site-packages/cctbx_website/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.7/site-packages/gltbx/run_tests.py",
+    "caption": "Bash script to test new installation of cctbx with Python3.8 in a conda env.",
+    "scope": "source.python"
+},
+"gemmiInstall": {
+    "prefix": "gemmiInstall",
+    "body": "# Install from PyPi\n\
+pip install gemmi\n\
+# OR install the latest version directly from github.\n\
+pip install git+https://github.com/project-gemmi/gemmi.git",
+    "caption": "Command to install gemmi (https://github.com/project-gemmi/gemmi). Documentation is located here (https://gemmi.readthedocs.io/en/latest/install.html).",
+    "scope": "source.python"
+},
+"fixPermissionsOnMacSDK": {
+    "prefix": "fixPermissionsOnMacSDK",
+    "body": "cd /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/\n\
+sudo ln -s MacOSX.sdk MacOSX10.15.sdk",
+    "caption": "Fix permission on MacOS SDK. Adjust the version number of the sdk as needed.",
+    "scope": "source.python"
+},
+"averageB": {
+    "prefix": "averageB",
+    "body": "from iotbx import pdb\n\
+pdb_name = '~/${1:Downloads/4RBQ}.pdb'\n\
+pdb_inp = pdb.input(file_name=pdb_name)\n\
+atoms = pdb_inp.atoms()\n\
+bfactors = atoms.extract_b()\n\
+bfactors.format_mean('%6.2f Ang.^2')\n\
+$0",
+    "caption": "Print the average B factor for all atoms.",
+    "scope": "source.python"
+},
+"testCCTBXpython39": {
+    "prefix": "testCCTBXpython39",
+    "body": "#! /bin/sh\n\
+set noglob\n\
+set verbose\n\
+libtbx.python $CONDA_PREFIX/lib/python3.9/site-packages/libtbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.9/site-packages/iotbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.9/site-packages/boost_adptbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.9/site-packages/fable/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.9/site-packages/scitbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.9/site-packages/cctbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.9/site-packages/cctbx/run_examples.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.9/site-packages/smtbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.9/site-packages/cflib_adaptbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.9/site-packages/reduce/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.9/site-packages/mmtbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.9/site-packages/cctbx_website/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.9/site-packages/gltbx/run_tests.py",
+    "caption": "Bash script to test new installation of cctbx with Python3.9 in a conda env.",
+    "scope": "source.python"
+},
+"testCCTBXpython310": {
+    "prefix": "testCCTBXpython310",
+    "body": "#! /bin/sh\n\
+set noglob\n\
+set verbose\n\
+libtbx.python $CONDA_PREFIX/lib/python3.10/site-packages/libtbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.10/site-packages/iotbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.10/site-packages/boost_adptbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.10/site-packages/fable/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.10/site-packages/scitbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.10/site-packages/cctbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.10/site-packages/cctbx/run_examples.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.10/site-packages/smtbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.10/site-packages/cflib_adaptbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.10/site-packages/reduce/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.10/site-packages/mmtbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.10/site-packages/cctbx_website/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.10/site-packages/gltbx/run_tests.py",
+    "caption": "Bash script to test new installation of cctbx with Python3.10 in a conda env.",
+    "scope": "source.python"
+},
+"testCCTBXpython311": {
+    "prefix": "testCCTBXpython311",
+    "body": "#! /bin/sh\n\
+set noglob\n\
+set verbose\n\
+libtbx.python $CONDA_PREFIX/lib/python3.11/site-packages/libtbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.11/site-packages/iotbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.11/site-packages/boost_adptbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.11/site-packages/fable/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.11/site-packages/scitbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.11/site-packages/cctbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.11/site-packages/cctbx/run_examples.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.11/site-packages/smtbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.11/site-packages/cflib_adaptbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.11/site-packages/reduce/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.11/site-packages/mmtbx/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.11/site-packages/cctbx_website/run_tests.py\n\
+libtbx.python $CONDA_PREFIX/lib/python3.11/site-packages/gltbx/run_tests.py",
+    "caption": "Bash script to test new installation of cctbx with Python3.11 in a conda env.",
+    "scope": "source.python"
+},
