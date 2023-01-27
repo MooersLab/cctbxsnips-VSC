@@ -52,7 +52,7 @@ If you have an existing python.json, you want to concatenate the files.
 
 *Note* After opening a connection from a code cell in a Jupyter Notebook (light-theme) to VSCode (dark-theme), a markdown document will appear in VSCode. You will need to manually change the scope to Python by opening the command palette (enter Option-X on macOS) and entering *Change Language Mode*. This will open a menu with a list of programming languages. Select **python**.  Now you will be able to access the cctbx snippets inside VSCode. 
 
-<p align="center"><img src="images/selectLanguageMode.png" style="width: 90vw; min-width: 330px;"></p>
+<p align="center"><img src="images/SelectLanguageMode.png" style="width: 90vw; min-width: 330px;"></p>
 
 
 However, each new cell activate with GhostText opens a new temporary document in VScode. The scope has to be changed again. This grows old fast. The default file extension of this temporary document is *.tmp. The tmp file extension can be remapped to python as follows in the **settings.json** file:
